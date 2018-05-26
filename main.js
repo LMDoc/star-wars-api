@@ -8,6 +8,7 @@ let movies = document.querySelector('#movies');
 let charSpecies = document.querySelector('#charSpecies');
 let form = document.querySelector('form');
 let input = document.querySelector('#searchTerm');
+let birthYear = document.querySelector('#birthYear');
 
 document.querySelector('form').addEventListener("submit", search)
 
@@ -40,11 +41,12 @@ function getFilms(data) {
 }
 
 function update(data){
-   name.innerHTML = person.name.toUpperCase();
-   height.innerHTML = `<b>Height:</b> ${person.height}cm`
+  name.innerHTML = person.name.toUpperCase();
+   birthYear.innerHTML = person.birth_year == "unknown" ? `<b>Born:</b> Unknown` : `<b>Born:</b> ${person.birth_year[0].toUpperCase()}${person.birth_year.slice(1)}`
+   height.innerHTML = person.height == "unknown" ? `Height: Unknown` : `<b>Height:</b> ${person.height}cm`;
    gender.innerHTML = `<b>Gender:</b> ${person.gender[0].toUpperCase()}${person.gender.slice(1)}`
-   home.innerHTML = `${world.name} (Population: ${Number(world.population).toLocaleString()})`
-   homePop.innerHTML = `<b>Climate:</b> ${world.climate[0].toUpperCase()}${world.climate.slice(1)}`
+   home.innerHTML = world.name == "unknown" ? `${world.name[0].toUpperCase()}${world.name.slice(1)}` : `${world.name[0].toUpperCase()}${world.name.slice(1)}(Population: ${Number(world.population).toLocaleString()})`;
+   homeClimate.innerHTML = `<b>Climate:</b> ${world.climate[0].toUpperCase()}${world.climate.slice(1)}`
    charSpecies.innerHTML = `<b>Species:</b> ${species.name}`
 }
 
